@@ -59,7 +59,7 @@ cfgload(void){
 	rewind(f); fread(buf, 1, sz, f); fclose(f);
 
 	char *p = buf;
-	char k[30]; int x;
+	char k[30] = {0}; int x;
 	while(p && *p && sscanf(p, "%29[a-z]=%d", k, &x) == 2){
 		if(strcmp(k, "range") == 0)      {v.wlimit = deg2rad(x);}
 		else if(strcmp(k, "thresh") == 0){v.grabthresh = (double)(x)/100.0;}
