@@ -10,9 +10,7 @@ RELFILES=$E circsteer.cfg vJoyInterface.dll README.md Makefile LICENSE.txt
 all: $E
 $E: ${OFILES} src/circsteer.res vJoyInterface.dll
 	${CXX} ${LDFLAGS} -o $@ ${OFILES} src/circsteer.res ${LDLIBS}
-main.o: src/a.h
-uicon.o: src/a.h
-uicurses.o: src/a.h
+${OFILES}: src/a.h
 src/circsteer.res: src/circsteer.rc
 	windres $^ -O coff $@
 vJoyInterface.dll:
@@ -22,4 +20,4 @@ $Z: ${RELFILES}
 	strip -s $E
 	zip $@ $^
 clean:
-	rm -f $E ${OFILES} $R circsteer*.zip vJoy*.dll
+	rm -f $E ${OFILES} src/circsteer.res circsteer*.zip vJoy*.dll
